@@ -97,7 +97,7 @@ def pick(bot, update):
     if list[0] < 6:
         return PICK
     else:
-        update.message.reply_text("6효를 다 뽑았어요!")
+        update.message.reply_text("6효를 다 뽑았어요!", reply_markup=ReplyKeyboardRemove())
         return done(bot, update)
 
 def record(picked):
@@ -114,7 +114,7 @@ def record(picked):
 def done(bot, update):
     result = calculate()
     update.message.reply_text('점괘는 ' + result + ' 입니다. '
-                              '구글에서 [주역 ' + result + ']로 검색하시면 점괘 해석을 볼 수 있어요!', reply_markup=ReplyKeyboardRemove())
+                              '구글에서 [주역 ' + result + ']로 검색하시면 점괘 해석을 볼 수 있어요!')
     update.message.reply_text('다시 점을 보시려면 채팅창에 /start 을 누르세요! 안녕!')
     clear()
     
