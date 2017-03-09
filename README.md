@@ -2,6 +2,7 @@
 ===================
 
 Shaman fortune teller bot on **Telegram**.
+
 Best wish for you!
 
 
@@ -11,6 +12,7 @@ Introduction
 -------------
 
 This bot provides a divinatory sign using [I Ching (易經, yì jīng)](https://en.wikipedia.org/wiki/I_Ching). 
+
 Each divinatory sign is randomly generated in forms of 64 hexagrams.
 
 ----------
@@ -20,7 +22,7 @@ Usage
 
 Tab the button.
 
-![hello](https://github.com/LoveMeWithoutAll/ShamanKing_bot/blob/feature/README.MD/screens/hello.png?raw=true)
+![hello](https://github.com/LoveMeWithoutAll/ShamanKing_bot/blob/feature/README.MD/screens/newHello.png?raw=true)
 
 and interpret the divinatory sign 
 
@@ -34,7 +36,7 @@ Interpretation
 
 Refer to this [link](https://en.wikipedia.org/wiki/Hexagram_%28I_Ching%29)
 
-![map](http://www.thatsmags.com/image/view/201612/i-ching-hexagram.jpg)
+![map](https://github.com/LoveMeWithoutAll/ShamanKing_bot/blob/feature/README.MD/screens/map.jpg?raw=true)
 
 
 ----------
