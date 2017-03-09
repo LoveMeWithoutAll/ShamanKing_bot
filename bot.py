@@ -1,3 +1,4 @@
+ # -*- coding: utf-8 -*-
 from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove)
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, RegexHandler, ConversationHandler)
 from random import randint
@@ -79,9 +80,9 @@ def start(bot, update, user_data):
     reply_keyboard = [['효를 뽑아요']]
     
     update.message.reply_text(
-        '안녕하세요. 주역봇입니다.'
+        '안녕하세요. 주역봇입니다.\n\n'
         '주역 64괘 중 하나를 뽑아드려요.\n\n'
-        '시작할까요?',
+        '효를 뽑아요 버튼을 눌러주세요!',        
         reply_markup=ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True))
     
     return PICK
@@ -91,14 +92,13 @@ def pick(bot, update):
     
     picked = randint(0,1)
     text = record(picked)
-    
-    update.message.reply_text(list[0])
-    update.message.reply_text(text,reply_markup=ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True))
+        
+    update.message.reply_text(str(list[0]) + ': ' +text,reply_markup=ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True))
     
     if list[0] < 6:
         return PICK
     else:
-        update.message.reply_text("6효를 다 뽑았어요!")
+        update.message.reply_text("6효를 다 뽑았어요!", reply_markup=ReplyKeyboardRemove())
         return done(bot, update)
 
 def record(picked):
@@ -115,8 +115,8 @@ def record(picked):
 def done(bot, update):
     result = calculate()
     update.message.reply_text('점괘는 ' + result + ' 입니다. '
-                              '구글에서 [주역 ' + result + ']로 검색하시면 점괘 해석을 볼 수 있어요!', reply_markup=ReplyKeyboardRemove())
-    update.message.reply_text('다시 점을 보시려면 채팅창에 /start 을 입력하세요! 안녕 끝!')
+                              '구글에서 [주역 ' + result + ']로 검색하시면 점괘 해석을 볼 수 있어요!')
+    update.message.reply_text('다시 점을 보시려면 채팅창에 /start 을 누르세요! 안녕!')
     clear()
     
     return ConversationHandler.END
@@ -148,7 +148,7 @@ def error(bot, update, error):
     logger.warn('Update "%s" caused error "%s"' % (update, error))
 
 def main():
-    updater = Updater("Token")
+    updater = Updater("361981337:AAHgUIWBfmLq9rh3Dqad2CjJDcJrAOVrKVU")
     dp = updater.dispatcher
     
     conv_handler = ConversationHandler(
