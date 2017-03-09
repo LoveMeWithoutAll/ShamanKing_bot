@@ -1,3 +1,4 @@
+ # -*- coding: utf-8 -*-
 from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove)
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, RegexHandler, ConversationHandler)
 from random import randint
@@ -147,7 +148,7 @@ def error(bot, update, error):
     logger.warn('Update "%s" caused error "%s"' % (update, error))
 
 def main():
-    updater = Updater("Token")
+    updater = Updater("361981337:AAHgUIWBfmLq9rh3Dqad2CjJDcJrAOVrKVU")
     dp = updater.dispatcher
     
     conv_handler = ConversationHandler(
