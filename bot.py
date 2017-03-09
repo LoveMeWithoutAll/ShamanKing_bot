@@ -79,7 +79,7 @@ def start(bot, update, user_data):
     reply_keyboard = [['효를 뽑아요']]
     
     update.message.reply_text(
-        '안녕하세요. 주역봇입니다.'
+        '안녕하세요. 주역봇입니다.\n\n'
         '주역 64괘 중 하나를 뽑아드려요.\n\n'
         '효를 뽑아요 버튼을 눌러주세요!',        
         reply_markup=ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True))
