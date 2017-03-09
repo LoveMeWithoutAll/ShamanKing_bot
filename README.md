@@ -36,7 +36,7 @@ Interpretation
 
 Refer to this [link](https://en.wikipedia.org/wiki/Hexagram_%28I_Ching%29)
 
-![map](https://github.com/LoveMeWithoutAll/ShamanKing_bot/blob/master/screens/map.jpg?raw=true)
+![map](https://github.com/LoveMeWithoutAll/ShamanKing_bot/blob/master/screens/newMap.png?raw=true)
 
 
 ----------
