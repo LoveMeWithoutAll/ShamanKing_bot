@@ -4,6 +4,8 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, Rege
 from random import randint
 import logging
 
+from py_ms_cognitive import PyMsCognitiveImageSearch
+
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 logger = logging.getLogger(__name__)
@@ -79,8 +81,10 @@ dic64 = {'111111' : '건乾',
 def start(bot, update, user_data):
     reply_keyboard = [['효를 뽑아요']]
     
+    user_full_name = update.message.from_user.first_name + " " + update.message.from_user.last_name
+    
     update.message.reply_text(
-        '안녕하세요. 주역봇입니다.\n\n'
+        '안녕하세요. ' + user_full_name + '님! 점쟁이봇입니다.\n\n'
         '주역 64괘 중 하나를 뽑아드려요.\n\n'
         '효를 뽑아요 버튼을 눌러주세요!',        
         reply_markup=ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True))
@@ -114,7 +118,9 @@ def done(bot, update):
     result = calculate()
     update.message.reply_text('점괘는 ' + result + ' 입니다. '
                               '구글에서 [주역 ' + result + ']로 검색하시면 점괘 해석을 볼 수 있어요!')
-    update.message.reply_text('다시 점을 보시려면 채팅창에 /start 을 누르세요! 안녕!')
+    update.message.reply_text('주역 ' + result)
+    update.message.reply_text(getImgUrl(result))
+    update.message.reply_text('다시 점을 보시려면 /start 를 누르세요! 안녕!')
     clear()
     
     return ConversationHandler.END
@@ -130,11 +136,18 @@ def calculate():
     
     return dic64[hyo]
 
+def getImgUrl(result):
+    search_term = '주역 ' + result[0] + '괘'
+    search_service = PyMsCognitiveImageSearch('Microsoft Cognitive Service Key', search_term, '&color=White')
+    searchResult = search_service.search(limit=1, format='json')
+    return searchResult[0].thumbnail_url
+
 def cancel(bot, update):
     user = update.message.from_user
     logger.info("User %s canceled the conversation." % user.first_name)
     update.message.reply_text('안녕 다음에 다시 만나요.', reply_markup=ReplyKeyboardRemove())
-        
+    clear()
+    
     return ConversationHandler.END    
     
 def clear():
