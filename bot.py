@@ -137,7 +137,8 @@ def cancel(bot, update):
     user = update.message.from_user
     logger.info("User %s canceled the conversation." % user.first_name)
     update.message.reply_text('안녕 다음에 다시 만나요.', reply_markup=ReplyKeyboardRemove())
-        
+    clear()
+    
     return ConversationHandler.END    
     
 def clear():
