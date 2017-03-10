@@ -8,7 +8,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger(__name__)
 
-PICK, DONE  = range(2)
+PICK, NLL, DONE  = range(3)
 list = [0,True,True,True,True,True,True]
 dic64 = {'111111' : '건乾',
          '011111' : '쾌夬',
@@ -154,7 +154,8 @@ def main():
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('start', start, pass_user_data=True)],
         states={
-            PICK: [RegexHandler('^(효를 뽑아요)$', pick)]
+            PICK: [RegexHandler('^(효를 뽑아요)$', pick)],
+            NLL: [RegexHandler('^(.)$', pick)]
         },
         fallbacks=[CommandHandler('cancel', cancel)]
     )
