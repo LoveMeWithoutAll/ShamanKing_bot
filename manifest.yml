@@ -1,0 +1,5 @@
+---
+applications:
+ - name: shamanKing_bot_v0.0.1
+   random-route: true
+   memory: 128M
