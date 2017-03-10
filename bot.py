@@ -4,6 +4,8 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, Rege
 from random import randint
 import logging
 
+from py_ms_cognitive import PyMsCognitiveImageSearch
+
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 logger = logging.getLogger(__name__)
@@ -117,6 +119,7 @@ def done(bot, update):
     update.message.reply_text('점괘는 ' + result + ' 입니다. '
                               '구글에서 [주역 ' + result + ']로 검색하시면 점괘 해석을 볼 수 있어요!')
     update.message.reply_text('주역 ' + result)
+    update.message.reply_text(getImgUrl(result))
     update.message.reply_text('다시 점을 보시려면 /start 를 누르세요! 안녕!')
     clear()
     
@@ -132,6 +135,12 @@ def calculate():
     logger.info("hyo : %s" % hyo)
     
     return dic64[hyo]
+
+def getImgUrl(result):
+    search_term = '주역 ' + result[0] + '괘'
+    search_service = PyMsCognitiveImageSearch('Microsoft Cognitive Service Key', search_term, '&color=White')
+    searchResult = search_service.search(limit=1, format='json')
+    return searchResult[0].thumbnail_url
 
 def cancel(bot, update):
     user = update.message.from_user
