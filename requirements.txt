@@ -1,0 +1,5 @@
+cf-deployment-tracker==1.0.2
+cloudant==2.4.0
+urllib3==1.20
+py-ms-cognitive==0.3.4
+python-telegram-bot==5.3.0
