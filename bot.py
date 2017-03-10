@@ -88,15 +88,13 @@ def start(bot, update, user_data):
     return PICK
 
 def pick(bot, update):
-    reply_keyboard = [['효를 뽑아요']]
-    
     picked = randint(0,1)
     text = record(picked)
         
-    update.message.reply_text(str(list[0]) + ': ' +text,reply_markup=ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True))
+    update.message.reply_text(str(list[0]) + ': ' +text)
     
     if list[0] < 6:
-        return PICK
+        return pick(bot, update)
     else:
         update.message.reply_text("6효를 다 뽑았어요!", reply_markup=ReplyKeyboardRemove())
         return done(bot, update)
