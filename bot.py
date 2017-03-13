@@ -2,6 +2,7 @@
 from telegram import (ReplyKeyboardMarkup, ReplyKeyboardRemove)
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, RegexHandler, ConversationHandler)
 from random import randint
+import re
 import logging
 
 from py_ms_cognitive import PyMsCognitiveImageSearch
@@ -120,7 +121,7 @@ def done(bot, update):
                               '구글에서 [주역 ' + result + ']로 검색하시면 점괘 해석을 볼 수 있어요!')
     update.message.reply_text('주역 ' + result)
     update.message.reply_text(getImgUrl(result))
-    update.message.reply_text('다시 점을 보시려면 /start 를 누르세요! 안녕!')
+    update.message.reply_text('다시 점을 보시려면 /start 를 누르시거나 점봐주세요~ 라고 해주세요~ 안녕!')
     clear()
     
     return ConversationHandler.END
@@ -141,6 +142,14 @@ def getImgUrl(result):
     search_service = PyMsCognitiveImageSearch('ea5f478af6204a29ab9e7dd96d7d08f8', search_term, '&color=Monochrome')
     searchResult = search_service.search(limit=1, format='json')
     return searchResult[0].thumbnail_url
+
+def tellMeWish(bot, update):
+    p = re.compile('점.')
+    m = p.match(update.message.text)
+    if m:
+        pick(bot, update)
+    else:
+        update.message.reply_text('다시 점을 치고 싶으시면 점봐주세요~ 라고 해주세요~')
 
 def cancel(bot, update):
     user = update.message.from_user
@@ -172,6 +181,7 @@ def main():
     )
     
     dp.add_handler(conv_handler)
+    dp.add_handler(MessageHandler(Filters.text, tellMeWish))
     dp.add_error_handler(error)
     
     updater.start_polling()
