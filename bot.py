@@ -141,7 +141,10 @@ def getImgUrl(result):
     search_term = '주역 ' + result.split(' ')[0] + '괘'
     search_service = PyMsCognitiveImageSearch('ea5f478af6204a29ab9e7dd96d7d08f8', search_term, '&color=Monochrome')
     searchResult = search_service.search(limit=1, format='json')
-    return searchResult[0].thumbnail_url
+    if len(searchResult) == 0:
+        return 'http://cfile208.uf.daum.net/image/18630D3950C82953265E8A'
+    else:
+        return searchResult[0].thumbnail_url
 
 def tellMeWish(bot, update):
     p = re.compile('점.')
