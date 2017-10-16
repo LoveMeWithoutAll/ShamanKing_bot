@@ -139,7 +139,7 @@ def calculate():
 
 def getImgUrl(result):
     search_term = '주역 ' + result.split(' ')[0] + '괘'
-    search_service = PyMsCognitiveImageSearch('ea5f478af6204a29ab9e7dd96d7d08f8', search_term, '&color=Monochrome')
+    search_service = PyMsCognitiveImageSearch('', search_term, '&color=Monochrome') # MS cognitive service key
     searchResult = search_service.search(limit=1, format='json')
     if len(searchResult) == 0:
         return 'http://cfile208.uf.daum.net/image/18630D3950C82953265E8A'
