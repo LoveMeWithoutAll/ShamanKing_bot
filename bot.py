@@ -168,7 +168,7 @@ def clear():
         i = True
 
 def error(bot, update, error):
-    logger.warn('Update "%s" caused error "%s"' % (update, error))
+    logger.warning('Update "%s" caused error "%s"' % (update, error))
 
 def main():
     updater = Updater("361981337:AAHgUIWBfmLq9rh3Dqad2CjJDcJrAOVrKVU")
