@@ -5,7 +5,8 @@ from random import randint
 import re
 import logging
 
-from py_ms_cognitive import PyMsCognitiveImageSearch
+from azure.cognitiveservices.search.imagesearch import ImageSearchAPI
+from msrest.authentication import CognitiveServicesCredentials
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
@@ -139,12 +140,17 @@ def calculate():
 
 def getImgUrl(result):
     search_term = '주역 ' + result.split(' ')[0] + '괘'
-    search_service = PyMsCognitiveImageSearch('', search_term, '&color=Monochrome') # MS cognitive service key
-    searchResult = search_service.search(limit=1, format='json')
-    if len(searchResult) == 0:
-        return 'http://cfile208.uf.daum.net/image/18630D3950C82953265E8A'
+    
+    subscription_key = "ee6cdff6d00440ba84a5040435d90d6b"
+
+    client = ImageSearchAPI(CognitiveServicesCredentials(subscription_key))
+    image_results = client.images.search(query=search_term)
+
+    if image_results.value:
+        first_image_result = image_results.value[0]
+        return first_image_result.content_url
     else:
-        return searchResult[0].thumbnail_url
+        return 'http://cfile208.uf.daum.net/image/18630D3950C82953265E8A'
 
 def tellMeWish(bot, update):
     p = re.compile('점.')
