@@ -22,11 +22,11 @@ Usage
 
 Tab the button.
 
-![hello](https://github.com/LoveMeWithoutAll/ShamanKing_bot/blob/feature/README.MD/screens/newHello.png?raw=true)
+![hello](https://github.com/LoveMeWithoutAll/ShamanKing_bot/blob/master/screens/newHello.png?raw=true)
 
 and interpret the divinatory sign 
 
-![result](https://github.com/LoveMeWithoutAll/ShamanKing_bot/blob/feature/README.MD/screens/result.png?raw=true)
+![result](https://github.com/LoveMeWithoutAll/ShamanKing_bot/blob/master/screens/result.png?raw=true)
 
 
 ----------
@@ -36,7 +36,7 @@ Interpretation
 
 Refer to this [link](https://en.wikipedia.org/wiki/Hexagram_%28I_Ching%29)
 
-![map](https://github.com/LoveMeWithoutAll/ShamanKing_bot/blob/feature/README.MD/screens/map.jpg?raw=true)
+![map](https://github.com/LoveMeWithoutAll/ShamanKing_bot/blob/master/screens/newMap.png?raw=true)
 
 
 ----------
