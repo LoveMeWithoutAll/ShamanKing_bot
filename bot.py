@@ -8,6 +8,8 @@ import logging
 from azure.cognitiveservices.search.imagesearch import ImageSearchAPI
 from msrest.authentication import CognitiveServicesCredentials
 
+from googlesearch import search
+
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 logger = logging.getLogger(__name__)
@@ -122,6 +124,7 @@ def done(bot, update):
                               '구글에서 [주역 ' + result + ']로 검색하시면 점괘 해석을 볼 수 있어요!')
     update.message.reply_text('주역 ' + result)
     update.message.reply_text(getImgUrl(result))
+    update.message.reply_text('점괘 해석 link: ' + getExplain(result))
     update.message.reply_text('다시 점을 보시려면 /start 를 누르시거나 점봐주세요~ 라고 해주세요~ 안녕!')
     clear()
     
@@ -151,6 +154,17 @@ def getImgUrl(result):
         return first_image_result.content_url
     else:
         return 'http://cfile208.uf.daum.net/image/18630D3950C82953265E8A'
+
+def getExplain(result):
+    search_term = '주역 ' + result.split(' ')[0] + '괘'
+    search_results = search(query='site:http://www.kookje.co.kr '+search_term,tld='co.kr',lang='ko',num=10,stop=1,pause=2)
+
+    result_arr = []
+
+    for i in search_results:
+        result_arr.append(i)
+
+    return result_arr[0]
 
 def tellMeWish(bot, update):
     p = re.compile('점.')
