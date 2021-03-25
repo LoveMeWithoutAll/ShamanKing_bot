@@ -21,7 +21,7 @@ multidict==4.5.2
 oauthlib==3.0.1
 pycparser==2.19
 python-telegram-bot==11.1.0
-PyYAML==5.1.1
+PyYAML==5.4
 requests==2.22.0
 requests-oauthlib==1.2.0
 selenium==2.53.6
