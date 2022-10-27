@@ -10,7 +10,7 @@ cf-deployment-tracker==1.0.2
 cffi==1.12.3
 chardet==3.0.4
 cloudant==2.4.0
-cryptography==2.7
+cryptography==3.2
 fake-useragent==0.1.11
 future==0.17.1
 google==2.0.2
